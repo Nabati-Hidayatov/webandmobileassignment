@@ -147,14 +147,19 @@ function removeSeat(seatId) {
 
 const cartStorageKey = 'campusTheatreCart';
 function readCart() {
-  const stored = localStorage.getItem(cartStorageKey);
-  if (!stored) return [];
-  try { const value = JSON.parse(stored); return Array.isArray(value) ? value : []; }
-  catch { return []; }
+  try {
+    const stored = localStorage.getItem(cartStorageKey);
+    if (!stored) return [];
+    const value = JSON.parse(stored);
+    return Array.isArray(value) ? value : [];
+  } catch { return []; }
 }
-function saveCart() { localStorage.setItem(cartStorageKey, JSON.stringify(cartSeatIds)); }
+function saveCart() {
+  try { localStorage.setItem(cartStorageKey, JSON.stringify(cartSeatIds)); }
+  catch {}
+}
 
 createVenue();
-cartSeatIds = readCart().filter(id => seats.some(seat => seat.id === id && !seat.unavailable));
+cartSeatIds = Array.from(new Set(readCart())).filter(id => seats.some(seat => seat.id === id && !seat.unavailable));
 renderCart();
 updateMap();
