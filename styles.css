@@ -81,3 +81,8 @@ h1, h2 { letter-spacing: -.5px; }
   .map-legend { gap: 8px 12px; }
   .map-legend span { font-size: 9px; }
 }
+.map-viewport { cursor: grab; }
+.map-viewport:active { cursor: grabbing; }
+.map-viewport.is-dragging .venue-layout { transition: none; }
+.venue-layout { transition: transform .18s ease-out; user-select: none; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
