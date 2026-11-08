@@ -63,3 +63,21 @@ h1, h2 { letter-spacing: -.5px; }
 .total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--line); }
 .controls { display: flex; flex-wrap: wrap; gap: 4px; }
 .controls button { min-width: 30px; padding: 6px; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
+.seat:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #e9b96f; outline-offset: 2px; }
+@media (max-width: 760px) { .ticketing-grid { grid-template-columns: 1fr; } .purchase-column { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) {
+  .page-shell { padding: 20px 12px; }
+  .purchase-column { grid-template-columns: 1fr; }
+  .map-viewport { height: 540px; min-height: 540px; }
+  .venue-layout { width: 100%; min-width: 0; padding: 14px 8px 10px; }
+  .stage { height: 34px; margin-bottom: 14px; }
+  .venue-section { padding: 8px 6px; }
+  .section-heading { gap: 6px; margin-bottom: 7px; }
+  .section-meta { font-size: 7.5px; }
+  .seat-row { gap: 3px; }
+  .seat { flex-basis: 20px; width: 20px; height: 20px; border-radius: 4px; font-size: 7px; }
+  .aisle { flex-basis: 12px; }
+  .map-foot { width: 78%; margin-top: 16px; font-size: 7px; }
+  .map-legend { gap: 8px 12px; }
+  .map-legend span { font-size: 9px; }
+}
