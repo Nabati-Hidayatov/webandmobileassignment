@@ -44,3 +44,22 @@ h1, h2 { letter-spacing: -.5px; }
 .legend-seat.unavailable { border-color: #e1e4e1; background: #eaedeb; }
 .map-hint { margin: 8px 0 0; text-align: right; font-size: 9px; }
 .map-hint span { padding: 0 4px; }
+.seat { flex: 0 0 28px; width: 28px; height: 27px; border: 1px solid #bbd4c4; border-radius: 6px; background: #e9f2ec; color: #3c7458; font-size: 9px; }
+.seat:hover:not(:disabled) { background: #d8e9de; }
+.seat.mezzanine-seat { border-color: #e4c994; background: #f7f0e2; color: #97703a; }
+.seat.mezzanine-seat:hover:not(:disabled) { background: #f3e6cb; }
+.seat.balcony-seat { border-color: #bfcbd1; background: #edf1f3; color: #5d7785; }
+.seat.balcony-seat:hover:not(:disabled) { background: #e0e9ed; }
+.seat:disabled, .seat.is-unavailable { background: #eaedeb; border-color: #e1e4e1; color: #aeb5b0; cursor: not-allowed; }
+.seat.is-inspected { outline: 2px solid var(--green); background: #cae1d2; }
+.seat.is-in-cart { background: var(--green); color: #fff; }
+.purchase-column { display: grid; gap: 14px; }
+.panel p { color: var(--muted); line-height: 1.5; }
+.panel [hidden] { display: none; }
+#add-seat, .remove-ticket { padding: 10px 12px; border: 0; border-radius: 5px; background: var(--green); color: #fff; }
+#add-seat:disabled { background: #d6ddd8; color: #68736b; cursor: not-allowed; }
+.cart-panel ul { margin: 0; padding: 0; list-style: none; }
+.cart-panel li { display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--line); }
+.controls { display: flex; flex-wrap: wrap; gap: 4px; }
+.controls button { min-width: 30px; padding: 6px; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
