@@ -119,12 +119,18 @@ function renderCart() {
     total += seat.price;
     const item = document.createElement('li');
     item.textContent = `${seat.sectionName}, row ${seat.row}, seat ${String(seat.number).padStart(2, '0')} — $${seat.price.toFixed(2)}`;
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button'; removeButton.className = 'remove-ticket'; removeButton.textContent = 'Remove';
+    removeButton.setAttribute('aria-label', `Remove ${seat.sectionName}, row ${seat.row}, seat ${String(seat.number).padStart(2, '0')}`);
+    removeButton.addEventListener('click', () => removeSeat(seatId));
+    item.append(removeButton);
     cartList.append(item);
   });
   cartTotal.textContent = `$${total.toFixed(2)}`;
   document.querySelector('#empty-cart').hidden = cartSeatIds.length > 0;
   document.querySelector('#header-count').textContent = String(cartSeatIds.length);
   updateSeatStates();
+  saveCart();
 }
 function addSeat() {
   const seat = seats.find(item => item.id === inspectedSeatId);
@@ -133,6 +139,22 @@ function addSeat() {
 }
 addSeatButton.addEventListener('click', addSeat);
 
+function removeSeat(seatId) {
+  cartSeatIds = cartSeatIds.filter(id => id !== seatId);
+  renderCart();
+  if (inspectedSeatId === seatId) inspectSeat(seatId);
+}
+
+const cartStorageKey = 'campusTheatreCart';
+function readCart() {
+  const stored = localStorage.getItem(cartStorageKey);
+  if (!stored) return [];
+  try { const value = JSON.parse(stored); return Array.isArray(value) ? value : []; }
+  catch { return []; }
+}
+function saveCart() { localStorage.setItem(cartStorageKey, JSON.stringify(cartSeatIds)); }
+
 createVenue();
+cartSeatIds = readCart().filter(id => seats.some(seat => seat.id === id && !seat.unavailable));
 renderCart();
 updateMap();
